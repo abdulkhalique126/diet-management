@@ -1,0 +1,784 @@
+# 1.A
+
+import java.util.*;
+
+
+class Rectangle{
+	double length;
+	double width;
+	
+	Rectangle(){
+		length = 10.0;
+		width = 20.0;		
+	}
+	
+	Rectangle(double a){
+		length = a;
+		width = a;
+	}
+	
+	Rectangle(double a, double b){
+		length = a;
+		width = b;
+	}
+
+	Rectangle(Rectangle obj){
+		length = obj.length;
+		width = obj.width;
+	}
+
+	//Area function
+	void area(){
+		System.out.println("Area = "+(length * width));
+	}
+
+}
+
+
+class Module1A{
+	public static void main(String[] args){
+		Rectangle r1 = new Rectangle();
+		System.out.println("Area Using Default Constructor.\n");
+		r1.area();
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("\nArea Using Single Parameterized  Constructor.");
+		System.out.println("Enter one dimension of Rectangle : ");
+		double x = sc.nextDouble();
+		
+		Rectangle r2 = new Rectangle(x);
+		r2.area();
+
+		//calling 2 parameter
+		System.out.println("\nArea Using two Parameterized  Constructor.");
+		System.out.println("Enter Length of Rectangle : ");
+		double l = sc.nextDouble();
+
+		System.out.println("Enter Width of Rectangle : ");
+		double w = sc.nextDouble();
+
+		Rectangle r3 = new Rectangle(l,w);
+		r3.area();
+		
+		System.out.println("\nCopy Constructor.\n");
+		Rectangle r4 = new Rectangle(r2);
+		r4.area();
+		
+		
+	}	
+
+}
+
+#1.B
+
+import java.util.Scanner;
+
+class Rectangle {
+
+    public int area(int side) {
+        return side * side;
+    }
+
+
+    public int area(int length, int width) {
+        return length * width;
+    }
+}
+
+public class Module1B{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Rectangle rectangle = new Rectangle();
+
+
+        System.out.print("Enter the side of the square: ");
+        int side = scanner.nextInt();
+        int squareArea = rectangle.area(side);
+        System.out.println("Area of the square: " + squareArea);
+
+
+        System.out.print("Enter the length of the rectangle: ");
+        int length = scanner.nextInt();
+        System.out.print("Enter the width of the rectangle: ");
+        int width = scanner.nextInt();
+        int rectangleArea = rectangle.area(length, width);
+        System.out.println("Area of the rectangle: " + rectangleArea);
+
+    }
+}
+
+#1.C
+
+class cuboid{
+    double length,width ,height;
+    static double vol;
+
+    cuboid(){
+        length=10;
+        width=20;
+        height=30;
+    }
+
+    cuboid(double l,double w,double h){
+        length=l;
+        width=w;
+        height=h;
+    }
+
+    void volume_of_cuboid(){
+        vol=length*width*height;
+        System.out.println("Volume of cuboid ="+vol);
+    }
+
+    static void display(){
+        System.out.println("Value of vol = " + vol);
+
+    }
+
+}
+
+class module1C{
+    public static void main(String args[]){
+        cuboid c1=new cuboid();
+        c1.volume_of_cuboid();
+
+        cuboid c2=new cuboid(20,40,50);
+        c2.volume_of_cuboid();
+
+        System.out.println("Area of cuboid (using class name)= " + cuboid.vol);
+
+        System.out.println("Area of cuboid (using object name) = " + c2.vol);
+
+        c1.display();
+
+
+    }
+}
+
+#1.D
+
+class Shape {
+    public void calculateArea() {
+        System.out.println("Area calculation is not defined for generic shapes.");
+    }
+}
+
+
+class Rectangle extends Shape {
+    private int length;
+    private int width;
+
+    public Rectangle(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public void calculateArea() {
+        int area = length * width;
+        System.out.println("Area of the rectangle: " + area);
+    }
+}
+
+
+class Square extends Shape {
+    private int side;
+
+    // Constructor to initialize side
+    public Square(int side) {
+        this.side = side;
+    }
+
+    // Overriding calculateArea method
+    @Override
+    public void calculateArea() {
+        int area = side * side;
+        System.out.println("Area of the square: " + area);
+    }
+}
+
+
+public class Module1D {
+    public static void main(String[] args) {
+        Shape genericShape = new Shape();
+        genericShape.calculateArea();
+
+        Rectangle rectangle = new Rectangle(5, 10);
+        rectangle.calculateArea();
+
+        Square square = new Square(7);
+        square.calculateArea();
+    }
+}
+
+#1.E
+
+abstract class Shape {
+    public abstract void calculateArea();
+
+    public void displayShape() {
+        System.out.println("This is a shape.");
+    }
+}
+
+
+class Rectangle extends Shape {
+    private int length;
+    private int width;
+
+    public Rectangle(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    @Override
+    public void calculateArea() {
+        int area = length * width;
+        System.out.println("Area of the rectangle: " + area);
+    }
+}
+
+
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public void calculateArea() {
+        double area = Math.PI * radius * radius;
+        System.out.printf("Area of the circle: %.2f%n", area);
+    }
+}
+
+public class Module1E{
+    public static void main(String[] args) {
+        Shape rectangle = new Rectangle(5, 10);
+        rectangle.displayShape();
+        rectangle.calculateArea();
+
+
+        Shape circle = new Circle(7);
+        circle.displayShape();
+        circle.calculateArea();
+    }
+}
+
+#1.F
+
+interface Shape {
+    void calculateArea();
+    void calculatePerimeter();
+}
+
+
+class Rectangle implements Shape {
+    private int length;
+    private int width;
+
+
+    public Rectangle(int length, int width) {
+        this.length = length;
+        this.width = width;
+    }
+
+
+    public void calculateArea() {
+        int area = length * width;
+        System.out.println("Area of the rectangle: " + area);
+    }
+
+    public void calculatePerimeter() {
+        int perimeter = 2 * (length + width);
+        System.out.println("Perimeter of the rectangle: " + perimeter);
+    }
+}
+
+class Circle implements Shape {
+    private double radius;
+
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+
+    public void calculateArea() {
+        double area = Math.PI * radius * radius;
+        System.out.printf("Area of the circle: %.2f%n", area);
+    }
+
+
+    public void calculatePerimeter() {
+        double perimeter = 2 * Math.PI * radius;
+        System.out.printf("Perimeter of the circle: %.2f%n", perimeter);
+    }
+}
+
+
+public class Module1F{
+    public static void main(String[] args) {
+        // Create a rectangle object
+        Shape rectangle = new Rectangle(5, 10);
+        System.out.println("Rectangle:");
+        rectangle.calculateArea();
+        rectangle.calculatePerimeter();
+
+        // Create a circle object
+        Shape circle = new Circle(7);
+        System.out.println("\nCircle:");
+        circle.calculateArea();
+        circle.calculatePerimeter();
+    }
+}
+
+#2.A
+
+import java.util.Scanner;
+
+public class Module2A{
+
+	public static void main(String args[]){
+
+		int a = 5;
+		int b = 0;
+
+		try{
+			int ans = a / b;
+			System.out.println(ans);
+		} catch(ArithmeticException e){
+			System.out.println("You cannot divide a number by 0");
+		}
+
+	}
+}
+
+#2.B
+
+import java.util.Scanner;
+
+class UserNameException extends Exception{
+    UserNameException(String message){
+        super(message);
+    }
+}
+
+
+public class Module2B{
+
+    public static void CheckName(String name) throws UserNameException{
+        for(int i = 0; i < name.length(); i++){
+            if(!((name.charAt(i) >= 'a' && name.charAt(i) <= 'z') || (name.charAt(i) >= 'A' && name.charAt(i) <= 'Z')))
+                throw new UserNameException("Name Exception");
+
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your name : ");
+        String name = scanner.nextLine();
+
+        try{
+            Module2B.CheckName(name);
+            System.out.println("Hello " + name);
+        } catch(UserNameException e){
+            System.out.println("Name should only contain alphabets");
+        }
+
+    }
+
+}
+
+#2.C
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
+class Module2C extends JPanel implements Runnable {
+    private ArrayList<Ball> balls;
+    private Thread animationThread;
+
+    public Module2C() {
+        balls = new ArrayList<>();
+        balls.add(new Ball(50, 50, 20, Color.RED));
+        balls.add(new Ball(100, 100, 20, Color.BLUE));
+        balls.add(new Ball(150, 150, 20, Color.GREEN));
+        balls.add(new Ball(200, 200, 20, Color.BLACK));
+        balls.add(new Ball(250, 250, 20, Color.YELLOW));
+        
+
+        // Start the animation thread
+        animationThread = new Thread(this);
+        animationThread.start();
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            for (Ball ball : balls) {
+                ball.move(getWidth(), getHeight());
+            }
+            repaint();
+            try {
+                // Sleep for 10 milliseconds to control the frame rate
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (Ball ball : balls) {
+            ball.draw(g);
+        }
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Bouncing Balls");
+        Module2C panel = new Module2C();
+        frame.add(panel);
+        frame.setSize(600, 600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+
+class Ball {
+    private int x, y, radius;
+    private int dx, dy;
+    private Color color;
+
+    public Ball(int x, int y, int radius, Color color) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.dx = (int) (Math.random() * 5) + 1;  // Speed of the ball in x direction
+        this.dy = (int) (Math.random() * 5) + 1;  // Speed of the ball in y direction
+    }
+
+    public void move(int width, int height) {
+        x += dx;
+        y += dy;
+
+        // Check for collision with borders and reverse direction if necessary
+        if (x <= 0 || x >= width - radius) {
+            dx = -dx;
+        }
+        if (y <= 0 || y >= height - radius) {
+            dy = -dy;
+        }
+    }
+
+    public void draw(Graphics g) {
+        g.setColor(color);
+        g.fillOval(x, y, radius, radius);
+    }
+}
+
+#2.D
+
+package module2d;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
+
+public class Module2D implements ActionListener
+{
+    JFrame frame1;
+    JLabel label1;
+    JTable table1;
+    JButton button1;
+    DefaultTableModel  dtm;
+    
+    Module2D ()
+    {
+        frame1= new JFrame (" JTable Program"); 
+        frame1.setLayout (null);
+        frame1.setSize (400, 500);
+        frame1.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+        frame1.setVisible(true);
+        
+        label1= new JLabel (" Details of Products ");
+        label1.setBounds(20,20,180,20);
+        frame1.add(label1);
+        
+        dtm= new DefaultTableModel();
+        
+        table1= new JTable (dtm);
+        table1.setPreferredScrollableViewportSize(new Dimension (300, 100));
+        table1.setFillsViewportHeight(true);
+        
+        JScrollPane js= new JScrollPane (table1);
+        js.setBounds (50, 50, 300, 100);  // (hori, verti, width, height)
+        frame1.add(js);
+        
+        dtm.addColumn("Product ID");
+        dtm.addColumn("Product Name");
+        dtm.addColumn("Product Description");
+        dtm.addColumn("Product Price");
+        
+        button1= new JButton(" Retrieve Product Data");
+        button1.setBounds(100, 200, 200, 30);
+        frame1.add(button1);
+        button1.addActionListener(this);
+    }
+    
+    public static void main(String[] args) 
+    {
+        Module2D obj= new Module2D ();
+        
+    }   
+
+    public void actionPerformed(ActionEvent e) 
+    {
+        // Database Connectivity
+        try 
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn= DriverManager.getConnection ("jdbc:mysql://localhost:3306/test", "root", "root");
+            Statement stmt= conn.createStatement();
+            String query= "select * from product_43";
+            ResultSet s= stmt.executeQuery(query);
+            while (s.next())
+            {
+                String s1= s.getString("productid");
+                String s2= s.getString("productname");
+                String s3= s.getString("productdesc");
+                int p= s.getInt("price");
+                JOptionPane.showMessageDialog(null, s1+ "  "+s2+"  "+s3+"  "+p);
+                dtm.addRow(new Object[] {s1, s2, s3, p});
+                frame1.validate();
+            }
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex);
+        }
+    }
+}
+
+#2.E
+
+package module2e;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.sql.*;
+
+public class Module2E implements ItemListener
+{
+    JFrame frame1;
+    JLabel label1, label2;
+    JComboBox jc;
+    JTextArea ta;
+    
+    Module2E()
+    {
+        frame1= new JFrame (" Combo box and JDBC program ");
+        frame1.setLayout(null);
+        
+        label1= new JLabel(" Select Subject: ");
+        label1.setBounds (20, 20, 100, 30);
+        frame1.add( label1 );
+        
+        String items[]= {"Computer Graphics", "Embedded Systems", "Java Programming", "Quantitative Techniques", "Software Engineering"};
+	jc= new JComboBox(items);
+	jc.setBounds (50, 50, 180, 20);
+        jc.addItemListener(this);
+        frame1.add( jc );
+        
+        label2= new JLabel(" Subject Description: ");
+        label2.setBounds (50, 100, 300, 30);
+        frame1.add( label2 );
+        
+        ta= new JTextArea();
+        ta.setBounds (70, 150, 300, 100);
+        frame1.add( ta );
+        
+        
+        frame1.setSize (400, 500);
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame1.setVisible (true);
+    }
+    public static void main(String[] args) 
+    {
+        Module2E obj= new Module2E();
+    }
+    public void itemStateChanged(ItemEvent ie)
+    {
+        // get selected Item
+        String selecteditem= jc.getSelectedItem().toString();
+        JOptionPane.showMessageDialog(frame1, " Selected Item "+ selecteditem);
+        
+        // Database Connectivity
+        try 
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn= DriverManager.getConnection ("jdbc:mysql://localhost:3306/test", "root", "root");
+            Statement stmt= conn.createStatement();
+            String query= "select * from subject_details where subject_name= '"+selecteditem+"'";
+            ResultSet s= stmt.executeQuery(query);
+            while (s.next())
+            {
+                String str= s.getNString(2);
+                // JOptionPane.showMessageDialog(frame1, " Description: "+ str);
+                ta.setText (str);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception occured"+ e);
+        }
+    }
+}
+
+#2.F
+
+package module2f;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+
+
+
+public class Module2F implements ActionListener{
+    JFrame frame1;
+    JLabel label1,label2,label3,label4;
+    JTextField productID,productName,productDesc,productPrice;
+    JButton prevButton,nextButton;
+    ResultSet rs ;
+    Module2F()
+    {
+        frame1 = new JFrame("combo box and JDBC prog");
+        frame1.setLayout(null);
+        frame1.setSize(400,500);
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setVisible(true);
+          
+        label1=new JLabel("product information");
+        label1.setBounds(20,20,200,30);
+        frame1.add(label1);
+          
+        label2=new JLabel("product id");
+        label2.setBounds(100,150,200,30);
+        frame1.add(label2);
+          
+        productID = new JTextField();
+        productID.setBounds(300,150,200,30);
+        frame1.add(productID);
+          
+        label3=new JLabel("product name");
+        label3.setBounds(100,200,200,30);
+        frame1.add(label3);
+          
+        productName = new JTextField();
+        productName.setBounds(300,200,200,30);
+        frame1.add(productName);
+          
+        label3=new JLabel("product description");
+        label3.setBounds(100,250,200,30);
+        frame1.add(label3);
+          
+        productDesc = new JTextField();
+        productDesc.setBounds(300,250,200,30);
+        frame1.add(productDesc);
+          
+        label4=new JLabel("price");
+        label4.setBounds(100,300,200,30);
+        frame1.add(label4);
+          
+        productPrice = new JTextField();
+        productPrice.setBounds(300,300,200,30);
+        frame1.add(productPrice);
+          
+        prevButton=new JButton("previous");
+        prevButton.addActionListener(this);
+        prevButton.setBounds(50,400,200,30);
+        frame1.add(prevButton);
+        
+        nextButton=new JButton("next");
+        nextButton.addActionListener(this);
+        nextButton.setBounds(300,400,200,30);
+        frame1.add(nextButton);
+        
+        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","root");
+            Statement stmt=conn.createStatement();
+            
+            String query = "select * from test.productdetails_142";
+            rs= stmt.executeQuery(query);
+            
+            DisplayRecord();
+            
+            
+        }
+        catch(Exception e)
+        {
+           System.out.println("error occured");
+        }
+        
+        
+          
+    }
+    public static void main(String[] args) {
+       Module2F obj = new Module2F();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+                if(e.getSource() == prevButton){
+            try {
+                if(rs.isFirst()){
+                    rs.first();
+                    DisplayRecord();
+                } else {
+                    rs.previous();
+                    DisplayRecord();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        
+        else if(e.getSource() == nextButton){
+            try {
+                if(rs.isLast()){
+                    rs.last();
+                    DisplayRecord();
+                } else {
+                    rs.next();
+                    DisplayRecord();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+        
+    }
+    
+    private void DisplayRecord() throws SQLException{
+                productID.setText(rs.getString("id"));
+                productName.setText(rs.getString("name"));
+                productDesc.setText(rs.getString("desc"));
+                productPrice.setText(rs.getString("price"));
+    }
+    
+}
+
+
+
+
+
